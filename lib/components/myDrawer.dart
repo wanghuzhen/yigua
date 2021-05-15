@@ -7,6 +7,7 @@
  */
 //主页左上角抽屉
 import 'package:flutter/material.dart';
+import 'package:yigua/pages/Description.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -40,6 +41,16 @@ class MyDrawer extends StatelessWidget {
               DrawerItem(
                 icon: Icons.description_rounded,
                 description: '介绍',
+                func: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return Description();
+                  }));
+                },
+              ),
+              //TODO --制作页面确定时辰，日正±1h确定午时
+              DrawerItem(
+                icon: Icons.timer,
+                description: '时辰',
                 func: () {
                   Navigator.pop(context);
                 },

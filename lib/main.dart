@@ -8,6 +8,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yigua/pages/Description.dart';
 import 'pages/HomePages.dart';
 
 void main() {
@@ -23,6 +24,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final Map<String, WidgetBuilder> _routes = {
     '/': (BuildContext context) => HomePage(),
+    '/description': (BuildContext context) => Description()
   };
 
   // This widget is the root of your application.

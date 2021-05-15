@@ -6,8 +6,8 @@
  * @Date: 2021-05-12 21:08:53
  */
 import 'package:flutter/material.dart';
+import 'package:yigua/components/LiuYao.dart';
 import 'package:yigua/components/myDrawer.dart';
-import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -16,21 +16,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        drawer: MyDrawer(),
-        appBar: AppBar(
-          title: Text('一卦 易卦'),
-          actions: [IconButton(icon: Icon(Icons.search), onPressed: () {})],
-        ),
-        body: DoubleBackToCloseApp(
-            snackBar: SnackBar(
-              content: Text('再点一次退出程序'),
+          drawer: MyDrawer(),
+          appBar: AppBar(
+            title: Text('一卦 易卦'),
+            actions: [IconButton(icon: Icon(Icons.search), onPressed: () {})],
+          ),
+          body: Container(
+            child: ListView(
+              children: [],
             ),
-            child: Container(
-              child: ListView(
-                children: [],
-              ),
-            )),
-      ),
+          )),
     );
   }
 }
