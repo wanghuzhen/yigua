@@ -24,12 +24,12 @@ class _GuaALLState extends State<GuaALL> {
 
   @override
   Widget build(BuildContext context) {
-    String allName = '上' +
-        guaList_1[widget.up] +
-        '下' +
-        guaList_1[widget.down] +
-        ' ' +
-        widget.guaName;
+    // String allName = '上' +
+    //     guaList_1[widget.up] +
+    //     '下' +
+    //     guaList_1[widget.down] +
+    //     ' ' +
+    //     widget.guaName;
     return Container(
       child: Scaffold(
         appBar: AppBar(
