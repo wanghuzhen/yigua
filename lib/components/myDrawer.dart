@@ -55,13 +55,6 @@ class MyDrawer extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              DrawerItem(
-                icon: Icons.person,
-                description: 'Github',
-                func: () {
-                  Navigator.pop(context);
-                },
-              ),
             ],
           ),
           Container(
@@ -71,7 +64,7 @@ class MyDrawer extends StatelessWidget {
               'QQ:2327253081',
               style: TextStyle(fontSize: 16),
             ),
-          )
+          ),
         ],
       ),
     );

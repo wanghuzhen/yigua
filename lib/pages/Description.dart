@@ -6,9 +6,8 @@
  * @Date: 2021-05-13 23:10:48
  */
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui show window;
-
 import 'package:yigua/components/LiuYao.dart';
+import 'package:yigua/global.dart';
 
 class Description extends StatefulWidget {
   Description({Key key}) : super(key: key);
@@ -18,7 +17,6 @@ class Description extends StatefulWidget {
 }
 
 class _DescriptionState extends State<Description> {
-  MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +35,8 @@ class _DescriptionState extends State<Description> {
           child: Card(
             elevation: 5,
             child: Container(
-              height: mediaQuery.size.height,
-              width: mediaQuery.size.width,
+              height: Global.screenHeight,
+              width: Global.screenWidth,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

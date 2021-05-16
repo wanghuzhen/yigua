@@ -6,11 +6,21 @@
  * @Date: 2021-05-12 21:08:53
  */
 import 'package:flutter/material.dart';
-import 'package:yigua/components/LiuYao.dart';
+import 'package:yigua/components/GuaRes.dart';
 import 'package:yigua/components/myDrawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
+
+  List<Widget> myBody() {
+    List<Widget> list = [];
+    for (var i = 0; i < 8; i++) {
+      for (var j = 0; j < 8; j += 2) {
+        list.add(GuaRes(up: i, down: j));
+      }
+    }
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +33,7 @@ class HomePage extends StatelessWidget {
           ),
           body: Container(
             child: ListView(
-              children: [],
+              children: this.myBody(),
             ),
           )),
     );
