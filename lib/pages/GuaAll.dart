@@ -77,6 +77,15 @@ class _GuaALLState extends State<GuaALL> {
     }
     var cuoGua = getCuogua(widget.up, widget.down);
     var zongGua = getZonggua(widget.up, widget.down);
+    var tmp = Global.guaList_3[widget.up][widget.down].split('|');
+    var tmp2 = tmp;
+    var descriptionZhu = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
+    tmp = Global.guaList_3[huGua[0]][huGua[1]].split('|');
+    var descriptionHu = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
+    tmp = Global.guaList_3[cuoGua[0]][cuoGua[1]].split('|');
+    var descriptionCuo = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
+    tmp = Global.guaList_3[zongGua[0]][zongGua[1]].split('|');
+    var descriptionZong = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -94,12 +103,14 @@ class _GuaALLState extends State<GuaALL> {
                   up: widget.up,
                   down: widget.down,
                   name: Global.guaList_2[widget.up][widget.down].split(' ')[1],
+                  description: descriptionZhu,
                 ),
                 GuaDescription(
                   gua: '互卦',
                   up: huGua[0],
                   down: huGua[1],
                   name: Global.guaList_2[huGua[0]][huGua[1]].split(' ')[1],
+                  description: descriptionHu,
                 ),
                 GuaDescription(
                   gua: '初九变卦',
@@ -107,6 +118,7 @@ class _GuaALLState extends State<GuaALL> {
                   down: bianGua[0][1],
                   name: Global.guaList_2[bianGua[0][0]][bianGua[0][1]]
                       .split(' ')[1],
+                  description: tmp2[3],
                 ),
                 GuaDescription(
                   gua: '九二变卦',
@@ -114,6 +126,7 @@ class _GuaALLState extends State<GuaALL> {
                   down: bianGua[1][1],
                   name: Global.guaList_2[bianGua[1][0]][bianGua[1][1]]
                       .split(' ')[1],
+                  description: tmp2[4],
                 ),
                 GuaDescription(
                   gua: '六三变卦',
@@ -121,6 +134,7 @@ class _GuaALLState extends State<GuaALL> {
                   down: bianGua[2][1],
                   name: Global.guaList_2[bianGua[2][0]][bianGua[2][1]]
                       .split(' ')[1],
+                  description: tmp2[5],
                 ),
                 GuaDescription(
                   gua: '九四变卦',
@@ -128,6 +142,7 @@ class _GuaALLState extends State<GuaALL> {
                   down: bianGua[3][1],
                   name: Global.guaList_2[bianGua[3][0]][bianGua[3][1]]
                       .split(' ')[1],
+                  description: tmp2[6],
                 ),
                 GuaDescription(
                   gua: '九五变卦',
@@ -135,6 +150,7 @@ class _GuaALLState extends State<GuaALL> {
                   down: bianGua[4][1],
                   name: Global.guaList_2[bianGua[4][0]][bianGua[4][1]]
                       .split(' ')[1],
+                  description: tmp2[7],
                 ),
                 GuaDescription(
                   gua: '上六变卦',
@@ -142,18 +158,21 @@ class _GuaALLState extends State<GuaALL> {
                   down: bianGua[5][1],
                   name: Global.guaList_2[bianGua[5][0]][bianGua[5][1]]
                       .split(' ')[1],
+                  description: tmp2[8],
                 ),
                 GuaDescription(
                   gua: '错卦',
                   up: cuoGua[0],
                   down: cuoGua[1],
                   name: Global.guaList_2[cuoGua[0]][cuoGua[1]].split(' ')[1],
+                  description: descriptionCuo,
                 ),
                 GuaDescription(
                   gua: '综卦',
                   up: zongGua[0],
                   down: zongGua[1],
                   name: Global.guaList_2[zongGua[0]][zongGua[1]].split(' ')[1],
+                  description: descriptionZong,
                 ),
               ],
             ),
@@ -182,11 +201,12 @@ class _GuaDescriptionState extends State<GuaDescription> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 6),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 8, top: 8),
+            padding: EdgeInsets.only(left: 8, top: 2),
             child: Text(
               widget.gua + '：' + widget.name,
               style: TextStyle(fontSize: 16),
@@ -206,8 +226,9 @@ class _GuaDescriptionState extends State<GuaDescription> {
                 child: Container(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: Text(
-                    '先天八卦：\n乾南，坤北，离东，坎西，兑东南，震东北，巽西南，艮西北。\n后天八卦：\n震东，兑西，离南，坎北，乾西北，坤西南，艮东北，巽东南。\n',
-                    maxLines: 100,
+                    widget.description ?? '',
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Color.fromRGBO(77, 99, 104, 1),
                     ),
