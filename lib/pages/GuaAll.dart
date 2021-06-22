@@ -20,6 +20,7 @@ class GuaALL extends StatefulWidget {
 }
 
 class _GuaALLState extends State<GuaALL> {
+  List<Widget> guasList;
   String reverse(input) {
     return input.split('').reversed.join();
   }
@@ -69,15 +70,18 @@ class _GuaALLState extends State<GuaALL> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    var huGua = getHugua(widget.up, widget.down);
+  void initState() {
+    super.initState();
+    var up = widget.up;
+    var down = widget.down;
+    var huGua = getHugua(up, down);
     var bianGua = [];
     for (var i = 5; i >= 0; i--) {
-      bianGua.add(getBiangua(widget.up, widget.down, i));
+      bianGua.add(getBiangua(up, down, i));
     }
-    var cuoGua = getCuogua(widget.up, widget.down);
-    var zongGua = getZonggua(widget.up, widget.down);
-    var tmp = Global.guaList_3[widget.up][widget.down].split('|');
+    var cuoGua = getCuogua(up, down);
+    var zongGua = getZonggua(up, down);
+    var tmp = Global.guaList_3[up][down].split('|');
     var tmp2 = tmp;
     var descriptionZhu = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
     tmp = Global.guaList_3[huGua[0]][huGua[1]].split('|');
@@ -86,98 +90,115 @@ class _GuaALLState extends State<GuaALL> {
     var descriptionCuo = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
     tmp = Global.guaList_3[zongGua[0]][zongGua[1]].split('|');
     var descriptionZong = tmp[0] + '\n' + tmp[1] + '\n' + tmp[2];
+    guasList = [
+      GuaDescription(
+        gua: '主卦',
+        up: widget.up,
+        down: widget.down,
+        name: Global.guaList_2[up][down].split(' ')[1],
+        description: descriptionZhu,
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '互卦',
+        up: huGua[0],
+        down: huGua[1],
+        name: Global.guaList_2[huGua[0]][huGua[1]].split(' ')[1],
+        description: descriptionHu,
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '初九变卦',
+        up: bianGua[0][0],
+        down: bianGua[0][1],
+        name: Global.guaList_2[bianGua[0][0]][bianGua[0][1]].split(' ')[1],
+        description: tmp2[3],
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '九二变卦',
+        up: bianGua[1][0],
+        down: bianGua[1][1],
+        name: Global.guaList_2[bianGua[1][0]][bianGua[1][1]].split(' ')[1],
+        description: tmp2[4],
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '六三变卦',
+        up: bianGua[2][0],
+        down: bianGua[2][1],
+        name: Global.guaList_2[bianGua[2][0]][bianGua[2][1]].split(' ')[1],
+        description: tmp2[5],
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '九四变卦',
+        up: bianGua[3][0],
+        down: bianGua[3][1],
+        name: Global.guaList_2[bianGua[3][0]][bianGua[3][1]].split(' ')[1],
+        description: tmp2[6],
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '九五变卦',
+        up: bianGua[4][0],
+        down: bianGua[4][1],
+        name: Global.guaList_2[bianGua[4][0]][bianGua[4][1]].split(' ')[1],
+        description: tmp2[7],
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '上六变卦',
+        up: bianGua[5][0],
+        down: bianGua[5][1],
+        name: Global.guaList_2[bianGua[5][0]][bianGua[5][1]].split(' ')[1],
+        description: tmp2[8],
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '错卦',
+        up: cuoGua[0],
+        down: cuoGua[1],
+        name: Global.guaList_2[cuoGua[0]][cuoGua[1]].split(' ')[1],
+        description: descriptionCuo,
+        ontap: _onTap(),
+      ),
+      GuaDescription(
+        gua: '综卦',
+        up: zongGua[0],
+        down: zongGua[1],
+        name: Global.guaList_2[zongGua[0]][zongGua[1]].split(' ')[1],
+        description: descriptionZong,
+        ontap: _onTap(),
+      ),
+    ];
+  }
+
+  _onTap() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.guaName),
-        ),
-        body: Container(
-          width: Global.screenWidth,
-          margin: EdgeInsets.all(5),
-          child: Card(
-            elevation: 5,
-            child: ListView(
-              children: [
-                GuaDescription(
-                  gua: '主卦',
-                  up: widget.up,
-                  down: widget.down,
-                  name: Global.guaList_2[widget.up][widget.down].split(' ')[1],
-                  description: descriptionZhu,
-                ),
-                GuaDescription(
-                  gua: '互卦',
-                  up: huGua[0],
-                  down: huGua[1],
-                  name: Global.guaList_2[huGua[0]][huGua[1]].split(' ')[1],
-                  description: descriptionHu,
-                ),
-                GuaDescription(
-                  gua: '初九变卦',
-                  up: bianGua[0][0],
-                  down: bianGua[0][1],
-                  name: Global.guaList_2[bianGua[0][0]][bianGua[0][1]]
-                      .split(' ')[1],
-                  description: tmp2[3],
-                ),
-                GuaDescription(
-                  gua: '九二变卦',
-                  up: bianGua[1][0],
-                  down: bianGua[1][1],
-                  name: Global.guaList_2[bianGua[1][0]][bianGua[1][1]]
-                      .split(' ')[1],
-                  description: tmp2[4],
-                ),
-                GuaDescription(
-                  gua: '六三变卦',
-                  up: bianGua[2][0],
-                  down: bianGua[2][1],
-                  name: Global.guaList_2[bianGua[2][0]][bianGua[2][1]]
-                      .split(' ')[1],
-                  description: tmp2[5],
-                ),
-                GuaDescription(
-                  gua: '九四变卦',
-                  up: bianGua[3][0],
-                  down: bianGua[3][1],
-                  name: Global.guaList_2[bianGua[3][0]][bianGua[3][1]]
-                      .split(' ')[1],
-                  description: tmp2[6],
-                ),
-                GuaDescription(
-                  gua: '九五变卦',
-                  up: bianGua[4][0],
-                  down: bianGua[4][1],
-                  name: Global.guaList_2[bianGua[4][0]][bianGua[4][1]]
-                      .split(' ')[1],
-                  description: tmp2[7],
-                ),
-                GuaDescription(
-                  gua: '上六变卦',
-                  up: bianGua[5][0],
-                  down: bianGua[5][1],
-                  name: Global.guaList_2[bianGua[5][0]][bianGua[5][1]]
-                      .split(' ')[1],
-                  description: tmp2[8],
-                ),
-                GuaDescription(
-                  gua: '错卦',
-                  up: cuoGua[0],
-                  down: cuoGua[1],
-                  name: Global.guaList_2[cuoGua[0]][cuoGua[1]].split(' ')[1],
-                  description: descriptionCuo,
-                ),
-                GuaDescription(
-                  gua: '综卦',
-                  up: zongGua[0],
-                  down: zongGua[1],
-                  name: Global.guaList_2[zongGua[0]][zongGua[1]].split(' ')[1],
-                  description: descriptionZong,
-                ),
-              ],
+      child: Stack(
+        children: [
+          Scaffold(
+            appBar: AppBar(
+              title: Text(widget.guaName),
             ),
-          ),
-        ),
+            body: Container(
+              width: Global.screenWidth,
+              margin: EdgeInsets.all(5),
+              child: Card(
+                elevation: 5,
+                child: ListView(
+                  children: guasList,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -189,8 +210,15 @@ class GuaDescription extends StatefulWidget {
   final String gua;
   final String name;
   final String description;
+  final Function ontap;
   GuaDescription(
-      {Key key, this.up, this.down, this.description, this.gua, this.name})
+      {Key key,
+      this.up,
+      this.down,
+      this.description,
+      this.gua,
+      this.name,
+      this.ontap})
       : super(key: key);
 
   @override
@@ -200,44 +228,47 @@ class GuaDescription extends StatefulWidget {
 class _GuaDescriptionState extends State<GuaDescription> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 6),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 8, top: 2),
-            child: Text(
-              widget.gua + '：' + widget.name,
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 8, top: 8),
-                child: LiuYao(
-                  up: widget.up,
-                  down: widget.down,
-                ),
+    return GestureDetector(
+      onTap: widget.ontap,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 8, top: 2),
+              child: Text(
+                widget.gua + '：' + widget.name,
+                style: TextStyle(fontSize: 16),
               ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  child: Text(
-                    widget.description ?? '',
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Color.fromRGBO(77, 99, 104, 1),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 8, top: 8),
+                  child: LiuYao(
+                    up: widget.up,
+                    down: widget.down,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    child: Text(
+                      widget.description ?? '',
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Color.fromRGBO(77, 99, 104, 1),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
