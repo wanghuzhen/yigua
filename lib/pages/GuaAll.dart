@@ -20,7 +20,9 @@ class GuaALL extends StatefulWidget {
 }
 
 class _GuaALLState extends State<GuaALL> {
+  int up, down;
   List<Widget> guasList;
+  List<Widget> components;
   String reverse(input) {
     return input.split('').reversed.join();
   }
@@ -72,8 +74,16 @@ class _GuaALLState extends State<GuaALL> {
   @override
   void initState() {
     super.initState();
-    var up = widget.up;
-    var down = widget.down;
+    up = widget.up;
+    down = widget.down;
+  }
+
+  _onTap() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     var huGua = getHugua(up, down);
     var bianGua = [];
     for (var i = 5; i >= 0; i--) {
@@ -93,8 +103,8 @@ class _GuaALLState extends State<GuaALL> {
     guasList = [
       GuaDescription(
         gua: '主卦',
-        up: widget.up,
-        down: widget.down,
+        up: up,
+        down: down,
         name: Global.guaList_2[up][down].split(' ')[1],
         description: descriptionZhu,
         ontap: _onTap(),
@@ -172,33 +182,26 @@ class _GuaALLState extends State<GuaALL> {
         ontap: _onTap(),
       ),
     ];
-  }
-
-  _onTap() {
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
+    components = [
+      Container(
+        width: Global.screenWidth,
+        margin: EdgeInsets.all(5),
+        child: Card(
+          elevation: 5,
+          child: ListView(
+            children: guasList,
+          ),
+        ),
+      )
+    ];
     return Container(
-      child: Stack(
-        children: [
-          Scaffold(
-            appBar: AppBar(
-              title: Text(widget.guaName),
-            ),
-            body: Container(
-              width: Global.screenWidth,
-              margin: EdgeInsets.all(5),
-              child: Card(
-                elevation: 5,
-                child: ListView(
-                  children: guasList,
-                ),
-              ),
-            ),
-          )
-        ],
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.guaName),
+        ),
+        body: Stack(
+          children: components,
+        ),
       ),
     );
   }
