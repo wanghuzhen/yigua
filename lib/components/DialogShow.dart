@@ -16,34 +16,49 @@ class ShowDialog extends StatefulWidget {
 }
 
 class _ShowDialogState extends State<ShowDialog> {
+  bool isFlase = false;
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
+    return Center(
       child: Column(
-        children: [
-          SizedBox(
-            height: Global.screenHeight * 0.05,
-          ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
           Card(
-            elevation: 3.0,
+            elevation: 4.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            ),
+            clipBehavior: Clip.antiAlias,
             child: Container(
-              height: Global.screenHeight * 0.8,
-              width: Global.screenWidth * 0.9,
-              child: Text(''),
+              height: Global.screenHeight * 0.75,
+              width: Global.screenWidth * 0.86,
+              child: Stack(
+                children: [
+                  Opacity(
+                    opacity: 0.3,
+                    child: Image.asset('images/Taichi.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity),
+                  ),
+                  Container(
+                    child: Text(
+                      '123131213',
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Container(
-                padding: EdgeInsets.all(6),
-                color: Colors.black45,
-                child: Text(
-                  '取消',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
+              child: Image(
+                height: 48,
+                width: 48,
+                image: AssetImage('images/cancel.png'),
               )),
         ],
       ),
