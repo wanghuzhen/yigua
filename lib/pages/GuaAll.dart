@@ -114,7 +114,7 @@ class _GuaALLState extends State<GuaALL> {
         down: huGua[1],
         name: Global.guaList_2[huGua[0]][huGua[1]].split(' ')[1],
         description: descriptionHu,
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, descriptionHu),
       ),
       GuaDescription(
         gua: '初九变卦',
@@ -122,7 +122,7 @@ class _GuaALLState extends State<GuaALL> {
         down: bianGua[0][1],
         name: Global.guaList_2[bianGua[0][0]][bianGua[0][1]].split(' ')[1],
         description: tmp2[3],
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, tmp2[3]),
       ),
       GuaDescription(
         gua: '九二变卦',
@@ -130,7 +130,7 @@ class _GuaALLState extends State<GuaALL> {
         down: bianGua[1][1],
         name: Global.guaList_2[bianGua[1][0]][bianGua[1][1]].split(' ')[1],
         description: tmp2[4],
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, tmp2[4]),
       ),
       GuaDescription(
         gua: '六三变卦',
@@ -138,7 +138,7 @@ class _GuaALLState extends State<GuaALL> {
         down: bianGua[2][1],
         name: Global.guaList_2[bianGua[2][0]][bianGua[2][1]].split(' ')[1],
         description: tmp2[5],
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, tmp2[5]),
       ),
       GuaDescription(
         gua: '九四变卦',
@@ -146,7 +146,7 @@ class _GuaALLState extends State<GuaALL> {
         down: bianGua[3][1],
         name: Global.guaList_2[bianGua[3][0]][bianGua[3][1]].split(' ')[1],
         description: tmp2[6],
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, tmp2[6]),
       ),
       GuaDescription(
         gua: '九五变卦',
@@ -154,7 +154,7 @@ class _GuaALLState extends State<GuaALL> {
         down: bianGua[4][1],
         name: Global.guaList_2[bianGua[4][0]][bianGua[4][1]].split(' ')[1],
         description: tmp2[7],
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, tmp2[7]),
       ),
       GuaDescription(
         gua: '上六变卦',
@@ -162,7 +162,7 @@ class _GuaALLState extends State<GuaALL> {
         down: bianGua[5][1],
         name: Global.guaList_2[bianGua[5][0]][bianGua[5][1]].split(' ')[1],
         description: tmp2[8],
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, tmp2[8]),
       ),
       GuaDescription(
         gua: '错卦',
@@ -170,7 +170,7 @@ class _GuaALLState extends State<GuaALL> {
         down: cuoGua[1],
         name: Global.guaList_2[cuoGua[0]][cuoGua[1]].split(' ')[1],
         description: descriptionCuo,
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, descriptionCuo),
       ),
       GuaDescription(
         gua: '综卦',
@@ -178,7 +178,7 @@ class _GuaALLState extends State<GuaALL> {
         down: zongGua[1],
         name: Global.guaList_2[zongGua[0]][zongGua[1]].split(' ')[1],
         description: descriptionZong,
-        ontap: () => FunctionUtils.popDialog(context, descriptionZhu),
+        ontap: () => FunctionUtils.popDialog(context, descriptionZong),
       ),
     ];
     components = [
