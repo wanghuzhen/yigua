@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:yigua/global.dart';
 
 class ShowDialog extends StatefulWidget {
-  ShowDialog({Key key}) : super(key: key);
+  final String text;
+  ShowDialog({Key key, this.text}) : super(key: key);
 
   @override
   _ShowDialogState createState() => _ShowDialogState();
@@ -43,7 +44,7 @@ class _ShowDialogState extends State<ShowDialog> {
                   ),
                   Container(
                     child: Text(
-                      '123131213',
+                      widget.text,
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                   )
