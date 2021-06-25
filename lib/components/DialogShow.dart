@@ -27,7 +27,7 @@ class _ShowDialogState extends State<ShowDialog> {
           Card(
             elevation: 4.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
             clipBehavior: Clip.antiAlias,
             child: Container(
@@ -43,6 +43,7 @@ class _ShowDialogState extends State<ShowDialog> {
                         height: double.infinity),
                   ),
                   Container(
+                    padding: EdgeInsets.all(12),
                     child: Text(
                       widget.text,
                       style: TextStyle(color: Colors.black, fontSize: 18),
