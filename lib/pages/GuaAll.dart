@@ -6,7 +6,7 @@
  * @Date: 2021-05-16 18:13:06
  */
 import 'package:flutter/material.dart';
-import 'package:yigua/FunctionUtils.dart';
+import 'package:yigua/utils/FunctionUtils.dart';
 import 'package:yigua/components/LiuYao.dart';
 import 'package:yigua/global.dart';
 
@@ -244,8 +244,8 @@ class _GuaDescriptionState extends State<GuaDescription> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          FunctionUtils.popDialog(context, widget.description, widget.name),
+      onTap: () => FunctionUtils.popDialog(
+          context, widget.description, widget.gua + '：' + widget.name),
       child: Container(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 6),
         child: Column(

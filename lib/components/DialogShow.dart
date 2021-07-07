@@ -20,6 +20,12 @@ class ShowDialog extends StatefulWidget {
 class _ShowDialogState extends State<ShowDialog> {
   bool isFlase = false;
   @override
+  void initState() {
+    super.initState();
+    getDescription();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
@@ -76,5 +82,10 @@ class _ShowDialogState extends State<ShowDialog> {
         ],
       ),
     );
+  }
+
+  getDescription() {
+    var url = Global.map1[widget.name.split('：')[1]];
+    print(url);
   }
 }

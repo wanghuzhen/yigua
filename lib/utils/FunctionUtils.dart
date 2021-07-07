@@ -1,7 +1,7 @@
 /*
  * @Author: Wang Huzhen
  * @Version: 1.0
- * @FilePath: \yigua\lib\FunctionUtils.dart
+ * @FilePath: \yigua\lib\utils\FunctionUtils.dart
  * @Email: 2327253081@qq.com
  * @Date: 2021-06-23 21:31:38
  */
