@@ -9,12 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:yigua/components/DialogShow.dart';
 
 class FunctionUtils {
-  static void popDialog(BuildContext context, String text) {
+  static void popDialog(BuildContext context, String text, String name) {
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return ShowDialog(text: text);
+          return ShowDialog(
+            text: text,
+            name: name,
+          );
         });
   }
 }

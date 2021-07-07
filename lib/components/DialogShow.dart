@@ -10,7 +10,8 @@ import 'package:yigua/global.dart';
 
 class ShowDialog extends StatefulWidget {
   final String text;
-  ShowDialog({Key key, this.text}) : super(key: key);
+  final String name;
+  ShowDialog({Key key, this.text, this.name}) : super(key: key);
 
   @override
   _ShowDialogState createState() => _ShowDialogState();
@@ -44,9 +45,19 @@ class _ShowDialogState extends State<ShowDialog> {
                   ),
                   Container(
                     padding: EdgeInsets.all(12),
-                    child: Text(
-                      widget.text,
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            widget.name,
+                            style: TextStyle(color: Colors.black, fontSize: 22),
+                          ),
+                        ),
+                        Text(
+                          widget.text,
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        )
+                      ],
                     ),
                   )
                 ],
