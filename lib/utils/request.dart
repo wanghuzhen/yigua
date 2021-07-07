@@ -13,7 +13,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 class Request {
   // 配置 Dio 实例
   static BaseOptions _options = BaseOptions(
-    baseUrl: 'https://www.xx.com/api',
+    baseUrl: 'https://m.zhouyi.cc/zhouyi/yijing64',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
@@ -148,4 +148,12 @@ class Request {
   }
 
   // 这里只写了 get 和 post，其他的别名大家自己手动加上去就行
+}
+
+class Api {
+  static getData(path) {
+    return Request.get(
+      path,
+    );
+  }
 }
