@@ -43,6 +43,7 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.15.0"
+<<<<<<< HEAD
   csslib:
     dependency: transitive
     description:
@@ -50,6 +51,29 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.17.0"
+=======
+  common_utils:
+    dependency: "direct main"
+    description:
+      name: common_utils
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.4"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1"
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.1"
+>>>>>>> 84a39f4ab49aa858287ab0da738e05b17e0cf9e8
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -57,13 +81,27 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.3"
+<<<<<<< HEAD
+=======
+  decimal:
+    dependency: transitive
+    description:
+      name: decimal
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.0"
+>>>>>>> 84a39f4ab49aa858287ab0da738e05b17e0cf9e8
   dio:
     dependency: "direct main"
     description:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
+<<<<<<< HEAD
     version: "4.0.0"
+=======
+    version: "3.0.10"
+>>>>>>> 84a39f4ab49aa858287ab0da738e05b17e0cf9e8
   fake_async:
     dependency: transitive
     description:
@@ -76,11 +114,26 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_easyloading:
+    dependency: "direct main"
+    description:
+      name: flutter_easyloading
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.2"
+  flutter_spinkit:
+    dependency: transitive
+    description:
+      name: flutter_spinkit
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.2+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
   html:
     dependency: "direct main"
     description:
@@ -88,13 +141,19 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.15.0"
+=======
+>>>>>>> 84a39f4ab49aa858287ab0da738e05b17e0cf9e8
   http_parser:
     dependency: transitive
     description:
       name: http_parser
       url: "https://pub.flutter-io.cn"
     source: hosted
+<<<<<<< HEAD
     version: "4.0.0"
+=======
+    version: "3.1.4"
+>>>>>>> 84a39f4ab49aa858287ab0da738e05b17e0cf9e8
   matcher:
     dependency: transitive
     description:
@@ -116,6 +175,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.8.0"
+  rational:
+    dependency: transitive
+    description:
+      name: rational
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.2.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -179,3 +245,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
+  flutter: ">=0.1.4"
