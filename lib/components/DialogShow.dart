@@ -9,7 +9,6 @@ import 'package:html/parser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yigua/global.dart';
-import 'package:yigua/utils/request.dart';
 
 class ShowDialog extends StatefulWidget {
   final String text;
@@ -89,7 +88,6 @@ class _ShowDialogState extends State<ShowDialog> {
 
   Future getDescription() async {
     var url = Global.map1[widget.name.split('：')[1]];
-<<<<<<< HEAD
     Response response;
     BaseOptions _options = BaseOptions(
       baseUrl: 'https://m.zhouyi.cc/zhouyi/yijing64/',
@@ -99,9 +97,5 @@ class _ShowDialogState extends State<ShowDialog> {
     var dio = Dio(_options);
     response = await dio.get(url);
     var dcoument = parse(response.data.toString());
-=======
-    var tmp = await Api.getData(url);
-    print(tmp);
->>>>>>> 84a39f4ab49aa858287ab0da738e05b17e0cf9e8
   }
 }
