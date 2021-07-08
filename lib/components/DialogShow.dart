@@ -7,6 +7,7 @@
  */
 import 'package:flutter/material.dart';
 import 'package:yigua/global.dart';
+import 'package:yigua/utils/request.dart';
 
 class ShowDialog extends StatefulWidget {
   final String text;
@@ -86,6 +87,7 @@ class _ShowDialogState extends State<ShowDialog> {
 
   Future getDescription() async {
     var url = Global.map1[widget.name.split('：')[1]];
-    print(url);
+    var tmp = await Api.getData(url);
+    print(tmp);
   }
 }
