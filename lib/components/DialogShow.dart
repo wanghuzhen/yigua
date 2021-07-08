@@ -5,6 +5,8 @@
  * @Email: 2327253081@qq.com
  * @Date: 2021-06-20 21:47:47
  */
+import 'package:html/parser.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yigua/global.dart';
 
@@ -86,6 +88,14 @@ class _ShowDialogState extends State<ShowDialog> {
 
   Future getDescription() async {
     var url = Global.map1[widget.name.split('：')[1]];
-    print(url);
+    Response response;
+    BaseOptions _options = BaseOptions(
+      baseUrl: 'https://m.zhouyi.cc/zhouyi/yijing64/',
+      connectTimeout: 5000,
+      receiveTimeout: 3000,
+    );
+    var dio = Dio(_options);
+    response = await dio.get(url);
+    var dcoument = parse(response.data.toString());
   }
 }
