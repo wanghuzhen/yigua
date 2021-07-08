@@ -84,7 +84,7 @@ class _ShowDialogState extends State<ShowDialog> {
     );
   }
 
-  getDescription() {
+  Future getDescription() async {
     var url = Global.map1[widget.name.split('：')[1]];
     print(url);
   }
