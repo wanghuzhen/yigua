@@ -8,8 +8,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:yigua/pages/Description.dart';
 import 'package:yigua/pages/GuaAll.dart';
+import 'package:yigua/utils/permission/permissionHandler.dart';
 import 'pages/HomePages.dart';
 
 void main() {
@@ -20,6 +22,15 @@ void main() {
     );
   }
   runApp(MyApp());
+  List<Permission> permissions = [Permission.storage];
+  PermissionHelper.check(permissions, onSuccess: () {
+    print('onSuccess');
+  }, onFailed: () {
+    print('onFailed');
+  }, onOpenSetting: () {
+    print('onOpenSetting');
+    openAppSettings();
+  });
 }
 
 class MyApp extends StatelessWidget {
