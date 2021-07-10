@@ -117,10 +117,12 @@ class BallPulseIndicatorPainter extends CustomPainter {
     bool secondRGrow;
     if (this.animation.value > 1) {
       firstRGrow = false;
+      // ignore: invalid_use_of_protected_member
       firstScaleValue = tween.lerp(2 - this.animation.value);
       firstTempR = firstScaleValue * r;
     } else {
       firstRGrow = true;
+      // ignore: invalid_use_of_protected_member
       firstScaleValue = tween.lerp(this.animation.value);
       firstTempR = firstScaleValue * r;
     }
