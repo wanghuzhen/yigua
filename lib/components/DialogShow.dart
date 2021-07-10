@@ -5,9 +5,11 @@
  * @Email: 2327253081@qq.com
  * @Date: 2021-06-20 21:47:47
  */
+
 import 'package:html/parser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:yigua/components/loadingView.dart';
 import 'package:yigua/global.dart';
 
 class ShowDialog extends StatefulWidget {
@@ -21,6 +23,7 @@ class ShowDialog extends StatefulWidget {
 
 class _ShowDialogState extends State<ShowDialog> {
   bool isFlase = false;
+  var textList = [];
   @override
   void initState() {
     super.initState();
@@ -53,20 +56,32 @@ class _ShowDialogState extends State<ShowDialog> {
                   ),
                   Container(
                     padding: EdgeInsets.all(12),
-                    child: Column(
-                      children: [
-                        Center(
-                          child: Text(
-                            widget.name,
-                            style: TextStyle(color: Colors.black, fontSize: 22),
+                    child: textList.isEmpty
+                        ? Center(
+                            child: LoadingView(),
+                          )
+                        : ListView(
+                            children:
+                                new List.generate(textList.length, (index) {
+                              return new Text(
+                                textList[index],
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 18),
+                              );
+                            }),
                           ),
-                        ),
-                        Text(
-                          widget.text,
-                          style: TextStyle(color: Colors.black, fontSize: 18),
-                        )
-                      ],
-                    ),
+                    // [
+                    //   Center(
+                    //     child: Text(
+                    //       widget.name,
+                    //       style: TextStyle(color: Colors.black, fontSize: 22),
+                    //     ),
+                    //   ),
+                    //   Text(
+                    //     widget.text,
+                    //     style: TextStyle(color: Colors.black, fontSize: 18),
+                    //   )
+                    // ],
                   )
                 ],
               ),
@@ -97,5 +112,13 @@ class _ShowDialogState extends State<ShowDialog> {
     var dio = Dio(_options);
     response = await dio.get(url);
     var dcoument = parse(response.data.toString());
+    var tipList = dcoument.querySelectorAll('.tip_text');
+    var tmp = [];
+    for (var i = 0; i < tipList.length; i++) {
+      tmp.add(tipList[i].text.trim());
+    }
+    setState(() {
+      textList.addAll(tmp);
+    });
   }
 }
