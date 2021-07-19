@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yigua/pages/Description.dart';
 import 'package:yigua/pages/GuaAll.dart';
+import 'package:yigua/pages/clock.dart';
 import 'package:yigua/utils/permission/permissionHandler.dart';
 import 'pages/HomePages.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
     '/': (BuildContext context) => HomePage(),
     '/description': (BuildContext context) => Description(),
     '/gua': (context) => GuaALL(),
+    '/clock': (context) => Clock(),
   };
 
   // This widget is the root of your application.
