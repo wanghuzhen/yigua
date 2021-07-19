@@ -10,14 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:yigua/components/LiuYao.dart';
 import 'package:yigua/global.dart';
 
-class Description extends StatefulWidget {
-  Description({Key key}) : super(key: key);
+class Description extends StatelessWidget {
+  const Description({Key key}) : super(key: key);
 
-  @override
-  _DescriptionState createState() => _DescriptionState();
-}
-
-class _DescriptionState extends State<Description> {
   @override
   Widget build(BuildContext context) {
     return Container(
