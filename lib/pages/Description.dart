@@ -71,30 +71,39 @@ class Description extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, top: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          child: Image(
-                            width: 190,
-                            image: AssetImage('images/Gua.png'),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(left: 10, right: 10),
-                            child: Text(
-                              '八卦，自北宋邵雍后分先天八卦与后天八卦。\n先天八卦：\n乾三连，坤六断，震仰盂，艮覆碗，离中虚，坎中满，兑上缺，巽下断。\n后天八卦：\n一数坎来二数坤，三震四巽是中分，五数中宫六乾是，七兑八艮九离门。\n',
-                              maxLines: 100,
-                              style: TextStyle(
-                                color: Color.fromRGBO(77, 99, 104, 1),
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Column(children: [
+                        Row(
+                          children: [
+                            Container(
+                              child: Image(
+                                width: 190,
+                                image: AssetImage('images/Gua.png'),
                               ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(left: 10, right: 10),
+                                child: Text(
+                                  '八卦，自北宋邵雍后分先天八卦与后天八卦。\n先天八卦：\n乾三连，坤六断，震仰盂，艮覆碗，离中虚，坎中满，兑上缺，巽下断。\n后天八卦：\n一数坎来二数坤，三震四巽是中分，五数中宫六乾是，七兑八艮九离门。\n',
+                                  maxLines: 100,
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(77, 99, 104, 1),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          child: Text(
+                            '邵雍解卦选用先天八卦作为上下卦',
+                            style: TextStyle(
+                              color: Color.fromRGBO(77, 99, 104, 1),
                             ),
                           ),
                         )
-                      ],
-                    ),
-                  ),
+                      ])),
                   Container(
                     padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text(
