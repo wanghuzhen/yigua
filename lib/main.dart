@@ -13,7 +13,9 @@ import 'package:yigua/pages/Description.dart';
 import 'package:yigua/pages/GuaAll.dart';
 import 'package:yigua/pages/clock.dart';
 import 'package:yigua/utils/permission/permissionHandler.dart';
+import 'global.dart';
 import 'pages/HomePages.dart';
+import 'utils/DataUtils.dart';
 
 void main() {
   if (Platform.isAndroid) {
@@ -31,6 +33,16 @@ void main() {
   }, onOpenSetting: () {
     print('onOpenSetting');
     openAppSettings();
+  });
+  _fetchTime();
+}
+
+Future _fetchTime() async {
+  SharedPreferencesDataUtils sp = SharedPreferencesDataUtils();
+  await sp.getInfo('date').then((value) {
+    value == null
+        ? Global.dateTime = DateTime.now().toLocal()
+        : Global.dateTime = value as DateTime;
   });
 }
 

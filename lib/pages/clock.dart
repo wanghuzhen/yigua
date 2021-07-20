@@ -6,6 +6,7 @@
  * @Date: 2021-07-19 21:54:57
  */
 import 'package:flutter/material.dart';
+import 'package:yigua/global.dart';
 
 class Clock extends StatefulWidget {
   const Clock({Key key}) : super(key: key);
@@ -27,7 +28,7 @@ class _ClockState extends State<Clock> {
         ),
         //TODO --制作页面确定时辰，日正±1h确定午时
         body: Container(
-          child: Text('1231'),
+          child: Text(Global.dateTime.toString()),
         ),
       ),
     );

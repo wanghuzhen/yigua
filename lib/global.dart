@@ -16,6 +16,7 @@ class Global {
   static double screenHeight = mediaQueryData.size.height;
   static double paddingBottom = mediaQueryData.padding.bottom;
   static double paddingTop = mediaQueryData.padding.top;
+  static DateTime dateTime;
   static List guaList_1 = ['乾', '兑', '离', '震', '巽', '坎', '艮', '坤'];
   static List guaList_2 = [
     [
