@@ -12,7 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class LocationUtil {
   Map<String, Object> locationResult;
-  AMapFlutterLocation _locationPlugin = new AMapFlutterLocation();
+  AMapFlutterLocation locationPlugin = new AMapFlutterLocation();
 
   //设置定位参数
   void _setLocationOption() {
@@ -30,19 +30,19 @@ class LocationUtil {
     //<li>[AMapLocationMode.Hight_Accuracy]</li>
     locationOption.locationMode = AMapLocationMode.Hight_Accuracy;
     //将定位参数设置给定位插件
-    _locationPlugin.setLocationOption(locationOption);
+    locationPlugin.setLocationOption(locationOption);
   }
 
   //开始定位
   void startLocation() {
     //开始定位之前设置定位参数
     _setLocationOption();
-    _locationPlugin.startLocation();
+    locationPlugin.startLocation();
   }
 
   //停止定位
   void stopLocation() {
-    _locationPlugin.stopLocation();
+    locationPlugin.stopLocation();
   }
 
   //动态申请定位权限
