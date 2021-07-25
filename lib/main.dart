@@ -26,23 +26,27 @@ void main() {
     );
   }
   runApp(MyApp());
-  // List<Permission> permissions = [Permission.storage];
-  // PermissionHelper.check(permissions, onSuccess: () {
-  //   print('onSuccess');
-  // }, onFailed: () {
-  //   print('onFailed');
-  // }, onOpenSetting: () {
-  //   print('onOpenSetting');
-  //   openAppSettings();
-  // });
+  List<Permission> permissions = [Permission.location];
+  PermissionHelper.check(permissions, onSuccess: () {
+    print('onSuccess');
+  }, onFailed: () {
+    print('onFailed');
+  }, onOpenSetting: () {
+    print('onOpenSetting');
+    openAppSettings();
+  });
   _fetchTime();
 }
 
 _fetchTime() async {
   SharedPreferencesDataUtils sp = SharedPreferencesDataUtils();
+  // FunctionUtils.getDate();
   await sp.getInfo('date').then((value) {
-    value == null
-        ? Global.dateTime = FunctionUtils.getDate().toString()
+    print(value);
+    value == null ||
+            DateTime.parse(value.split(';')[3]).isAfter(
+                DateTime.parse(value.split(';')[3].split(' ')[0] + ' 24:00:00'))
+        ? FunctionUtils.getDate()
         // formatDate(DateTime.now(), [HH, ':', nn, ':', ss])
         : Global.dateTime = value;
   });

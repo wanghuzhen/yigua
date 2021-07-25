@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:yigua/components/DialogShow.dart';
 import 'package:location/location.dart';
+import 'package:yigua/global.dart';
+
+import 'DataUtils.dart';
 
 class FunctionUtils {
   static void popDialog(BuildContext context, String text, String name) {
@@ -47,7 +50,6 @@ class FunctionUtils {
       }
     }
     _locationData = await location.getLocation();
-    var date;
     Response response;
     BaseOptions _options = BaseOptions(
       baseUrl: 'https://richurimo.bmcx.com/',
@@ -61,6 +63,17 @@ class FunctionUtils {
         '__richurimo/';
     response = await dio.get(url);
     var dcoument = parse(response.data.toString());
-    return date;
+    var table = dcoument.querySelector('div.kuang table[cellpadding = "8"]');
+    var trItem = table.querySelectorAll('tr');
+    var tmp = trItem[DateTime.now().day].querySelectorAll('td');
+    Global.dateTime = tmp[1].text +
+        ';' +
+        tmp[2].text +
+        ';' +
+        tmp[3].text +
+        ';' +
+        DateTime.now().toString();
+    SharedPreferencesDataUtils sp = SharedPreferencesDataUtils();
+    await sp.setInfo('date', Global.dateTime);
   }
 }

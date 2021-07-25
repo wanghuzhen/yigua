@@ -28,7 +28,7 @@ class _ClockState extends State<Clock> {
         ),
         //TODO --制作页面确定时辰，日正±1h确定午时
         body: Container(
-          child: Text(Global.dateTime.toString()),
+          child: Text(Global.dateTime),
         ),
       ),
     );
