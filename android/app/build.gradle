@@ -65,5 +65,6 @@ flutter {
 }
 
 dependencies {
+    implementation('com.amap.api:location:5.2.0')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
