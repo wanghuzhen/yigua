@@ -7,7 +7,10 @@
  */
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../utils/locationUtil.dart';
+import 'package:solar_calculator/solar_calculator.dart';
+import 'package:yigua/global.dart';
+import '/utils/locationUtil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Clock extends StatefulWidget {
   const Clock({Key key}) : super(key: key);
@@ -19,18 +22,26 @@ class Clock extends StatefulWidget {
 class _ClockState extends State<Clock> {
   LocationUtil _lc = LocationUtil();
   StreamSubscription<Map<String, Object>> _locationListener;
-
+  SolarCalculator calc;
+  final instant = Instant(
+      year: DateTime.now().year,
+      month: DateTime.now().month,
+      day: DateTime.now().day,
+      hour: DateTime.now().hour,
+      timeZoneOffset: 8.0);
   @override
   void initState() {
     super.initState();
     // 动态申请定位权限
     _lc.requestPermission();
+    _lc.startLocation();
     // 注册定位结果监听
     _locationListener = _lc.locationPlugin
         .onLocationChanged()
         .listen((Map<String, Object> result) {
       setState(() {
-        _lc.locationResult = result;
+        calc =
+            SolarCalculator(instant, result['latitude'], result['longitude']);
       });
     });
   }
@@ -46,73 +57,46 @@ class _ClockState extends State<Clock> {
     _lc.locationPlugin.destroy();
   }
 
-  Container _createButtonContainer() {
-    return new Container(
-        alignment: Alignment.center,
-        child: new Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            new ElevatedButton(
-              onPressed: _lc.startLocation,
-              child: new Text('开始定位'),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-              ),
-            ),
-            new Container(width: 20.0),
-            new ElevatedButton(
-              onPressed: _lc.stopLocation,
-              child: new Text('停止定位'),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-              ),
-            )
-          ],
-        ));
-  }
-
-  Widget _resultWidget(key, value) {
-    return new Container(
-      child: new Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          new Container(
-            alignment: Alignment.centerRight,
-            width: 100.0,
-            child: new Text('$key :'),
-          ),
-          new Container(width: 5.0),
-          new Flexible(child: new Text('$value', softWrap: true)),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgets = <Widget>[];
-    widgets.add(_createButtonContainer());
-
-    if (_lc.locationResult != null) {
-      _lc.locationResult?.forEach((key, value) {
-        widgets.add(_resultWidget(key, value));
-      });
-    }
-
-    return new MaterialApp(
-        home: new Scaffold(
-      appBar: new AppBar(
-        title: new Text('AMap Location plugin example app'),
+    return Container(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back)),
+        ),
+        body: Container(
+          child: Center(
+            child: calc == null
+                ? SpinKitFadingCircle(
+                    color: Colors.pink[300],
+                  )
+                : Column(
+                    children: [
+                      Container(
+                        width: Global.screenWidth,
+                        height: 200,
+                        padding: EdgeInsets.all(8),
+                        child: Card(
+                          color: Colors.grey[300],
+                          elevation: 5.0,
+                          child: Column(
+                            children: [
+                              Text(calc.sunriseTime.toString()),
+                              Text(calc.sunTransitTime.toString()),
+                              Text(calc.sunsetTime.toString()),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+          ),
+        ),
       ),
-      body: new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: widgets,
-      ),
-    ));
+    );
   }
 }
