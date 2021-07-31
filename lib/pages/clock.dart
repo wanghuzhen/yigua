@@ -8,7 +8,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:solar_calculator/solar_calculator.dart';
-import 'package:yigua/global.dart';
 import '/utils/locationUtil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -67,34 +66,35 @@ class _ClockState extends State<Clock> {
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
+          title: Text('时辰'),
         ),
-        body: Container(
-          child: Center(
-            child: calc == null
-                ? SpinKitFadingCircle(
-                    color: Colors.pink[300],
-                  )
-                : Column(
-                    children: [
-                      Container(
-                        width: Global.screenWidth,
-                        height: 200,
-                        padding: EdgeInsets.all(8),
-                        child: Card(
-                          color: Colors.grey[300],
-                          elevation: 5.0,
-                          child: Column(
-                            children: [
-                              Text(calc.sunriseTime.toString()),
-                              Text(calc.sunTransitTime.toString()),
-                              Text(calc.sunsetTime.toString()),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+        body: Card(
+          //shape 设置边，可以设置圆角
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
+
+          elevation: 10.0,
+          margin: EdgeInsets.all(10.0),
+          child: calc == null
+              ? SpinKitCircle(
+                  color: Colors.pink[300],
+                )
+              : Stack(
+                  children: [
+                    Image.asset(
+                      DateTime.now().isAfter(DateTime.parse(
+                                  calc.sunriseTime.toString())) &&
+                              DateTime.now().isBefore(
+                                  DateTime.parse(calc.sunsetTime.toString()))
+                          ? 'images/light.jpeg'
+                          : 'images/dark.jpeg',
+                      fit: BoxFit.fill,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+                  ],
+                ),
         ),
       ),
     );
