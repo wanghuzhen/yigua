@@ -93,6 +93,22 @@ class _ClockState extends State<Clock> {
                       width: double.infinity,
                       height: double.infinity,
                     ),
+                    Align(
+                      alignment: Alignment(-0.8, -0.96),
+                      child: SizedBox(
+                        height: 80,
+                        child: Column(
+                          children: [
+                            Text('日出：' +
+                                calc.sunriseTime.toString().split(' +')[0]),
+                            Text('日中：' +
+                                calc.sunTransitTime.toString().split(' +')[0]),
+                            Text('日落：' +
+                                calc.sunsetTime.toString().split(' +')[0]),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
         ),
