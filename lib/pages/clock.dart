@@ -46,6 +46,30 @@ class _ClockState extends State<Clock> {
     '【戌时】': null,
     '【亥时】': null,
   };
+  List<String> chen = [
+    '子',
+    '丑',
+    '寅',
+    '卯',
+    '辰',
+    '巳',
+    '午',
+    '未',
+    '申',
+    '酉',
+    '戌',
+    '亥',
+  ];
+  List<String> ke = [
+    '初',
+    '二',
+    '三',
+    '四',
+    '五',
+    '六',
+    '七',
+    '八',
+  ];
   @override
   void initState() {
     super.initState();
@@ -366,15 +390,24 @@ class _ClockState extends State<Clock> {
                       ),
                     ),
                     Align(
-                      alignment: Alignment(-0.94, 0.84),
+                      alignment: Alignment(-0.98, 0.92),
                       child: Container(
                         padding: EdgeInsets.only(left: 10, right: 10),
                         child: Text(
                           '【子时】${time['【子时】']}\n【丑时】${time['【丑时】']}\n【寅时】${time['【寅时】']}\n【卯时】${time['【卯时】']}\n【辰时】${time['【辰时】']}\n【巳时】${time['【巳时】']}\n【午时】${time['【午时】']}\n【未时】${time['【未时】']}\n【申时】${time['【申时】']}\n【酉时】${time['【酉时】']}\n【戌时】${time['【戌时】']}\n【亥时】${time['【亥时】']}',
                           maxLines: 14,
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
+                          style: TextStyle(color: Colors.black, fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(0.64, 0.5),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          '当前时辰\n${chen[DateTime.now().difference(DateTime.parse(calc.sunTransitTime.toString()).toLocal().add(Duration(hours: -13))).inHours ~/ 2]}${DateTime.now().difference(DateTime.parse(calc.sunTransitTime.toString()).toLocal().add(Duration(hours: -13))).inHours % 2 == 0 ? '初' : '正'}${DateTime.now().difference(DateTime.parse(calc.sunTransitTime.toString()).toLocal().add(Duration(hours: -13))).inHours % 2 == 0 ? ke[(DateTime.now().minute ~/ 15)] : ke[(DateTime.now().minute ~/ 15 + 4)]}刻',
+                          maxLines: 14,
+                          style: TextStyle(color: Colors.black, fontSize: 16),
                         ),
                       ),
                     ),
