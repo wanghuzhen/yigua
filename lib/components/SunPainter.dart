@@ -67,7 +67,7 @@ class SunSetRisePainter extends CustomPainter {
 
     _paint.style = PaintingStyle.fill;
     _paint.color = Colors.yellow;
-    canvas.drawCircle(sunOffset, 6, _paint);
+    canvas.drawCircle(sunOffset, 10, _paint);
 
     var now = DateTime.now();
     String nowTimeStr = "${now.hour}:${now.minute}";

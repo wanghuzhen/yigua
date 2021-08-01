@@ -10,6 +10,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:solar_calculator/solar_calculator.dart';
 import 'package:yigua/components/SunPainter.dart';
+import 'package:yigua/global.dart';
 import '/utils/locationUtil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -112,13 +113,49 @@ class _ClockState extends State<Clock> {
                       ),
                     ),
                     Align(
-                      alignment: Alignment(0, -0.16),
-                      child: Container(
-                        child: CustomPaint(
-                          painter: SunSetRisePainter(
-                              calc.sunriseTime.toString().split(' ')[1],
-                              calc.sunsetTime.toString().split(' ')[1]),
+                      alignment: Alignment(0, -0.26),
+                      child: SizedBox(
+                        height: 170,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(bottom: 6),
+                              height: 140,
+                              width: Global.screenWidth - 40,
+                              child: CustomPaint(
+                                painter: SunSetRisePainter(
+                                    calc.sunriseTime.toString().split(' ')[1],
+                                    calc.sunsetTime.toString().split(' ')[1]),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: Text(
+                                    "日出 ${calc.sunriseTime.toString().split(' ')[1]}",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Text(
+                                    "日落 ${calc.sunsetTime.toString().split(' ')[1]}",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(0, 1),
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        height: 330,
                       ),
                     ),
                   ],
