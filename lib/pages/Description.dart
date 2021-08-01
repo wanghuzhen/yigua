@@ -18,11 +18,8 @@ class Description extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Container(
-            padding: EdgeInsets.only(left: 120),
-            child: Text(
-              '介绍',
-            ),
+          title: Text(
+            '介绍',
           ),
         ),
         //TODO --更详细一点
@@ -33,8 +30,7 @@ class Description extends StatelessWidget {
             child: Container(
               height: Global.screenHeight,
               width: Global.screenWidth,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 10, top: 5),

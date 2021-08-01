@@ -28,7 +28,7 @@ class LocationUtil {
     //<li>[AMapLocationMode.Battery_Saving]</li>
     //<li>[AMapLocationMode.Device_Sensors]</li>
     //<li>[AMapLocationMode.Hight_Accuracy]</li>
-    locationOption.locationMode = AMapLocationMode.Hight_Accuracy;
+    locationOption.locationMode = AMapLocationMode.Battery_Saving;
     //将定位参数设置给定位插件
     locationPlugin.setLocationOption(locationOption);
   }

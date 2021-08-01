@@ -6,8 +6,10 @@
  * @Date: 2021-07-19 21:54:57
  */
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:solar_calculator/solar_calculator.dart';
+import 'package:yigua/components/SunPainter.dart';
 import '/utils/locationUtil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -108,7 +110,17 @@ class _ClockState extends State<Clock> {
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    Align(
+                      alignment: Alignment(0, -0.16),
+                      child: Container(
+                        child: CustomPaint(
+                          painter: SunSetRisePainter(
+                              calc.sunriseTime.toString().split(' ')[1],
+                              calc.sunsetTime.toString().split(' ')[1]),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
         ),
