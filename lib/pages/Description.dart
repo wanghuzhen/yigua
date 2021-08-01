@@ -30,7 +30,8 @@ class Description extends StatelessWidget {
             child: Container(
               height: Global.screenHeight,
               width: Global.screenWidth,
-              child: ListView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 10, top: 5),
@@ -111,7 +112,7 @@ class Description extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(left: 10, right: 10),
                       child: Text(
-                        '先天八卦：\n乾南，坤北，离东，坎西，兑东南，震东北，巽西南，艮西北。\n后天八卦：\n震东，兑西，离南，坎北，乾西北，坤西南，艮东北，巽东南。\n',
+                        '先天八卦：乾南，坤北，离东，坎西，兑东南，震东北，巽西南，艮西北。\n后天八卦：震东，兑西，离南，坎北，乾西北，坤西南，艮东北，巽东南。\n',
                         maxLines: 100,
                         style: TextStyle(
                           color: Color.fromRGBO(77, 99, 104, 1),

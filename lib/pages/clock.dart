@@ -7,6 +7,7 @@
  */
 import 'dart:async';
 import 'dart:ui';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:solar_calculator/solar_calculator.dart';
 import 'package:yigua/components/SunPainter.dart';
@@ -31,6 +32,20 @@ class _ClockState extends State<Clock> {
       day: DateTime.now().day,
       hour: DateTime.now().hour,
       timeZoneOffset: 8.0);
+  Map time = {
+    '【子时】': null,
+    '【丑时】': null,
+    '【寅时】': null,
+    '【卯时】': null,
+    '【辰时】': null,
+    '【巳时】': null,
+    '【午时】': null,
+    '【未时】': null,
+    '【申时】': null,
+    '【酉时】': null,
+    '【戌时】': null,
+    '【亥时】': null,
+  };
   @override
   void initState() {
     super.initState();
@@ -44,6 +59,7 @@ class _ClockState extends State<Clock> {
       setState(() {
         calc =
             SolarCalculator(instant, result['latitude'], result['longitude']);
+        _getTime(calc.sunTransitTime.toString());
       });
     });
   }
@@ -57,6 +73,193 @@ class _ClockState extends State<Clock> {
     }
     //销毁定位
     _lc.locationPlugin.destroy();
+  }
+
+  _getTime(sunTranTime) {
+    var startTime =
+        DateTime.parse(sunTranTime).toLocal().add(Duration(hours: -1));
+
+    var endTime = DateTime.parse(sunTranTime).toLocal().add(Duration(hours: 1));
+    time['【子时】'] = '${formatDate(startTime.add(Duration(hours: -12)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(startTime.add(Duration(hours: -10)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【丑时】'] = '${formatDate(startTime.add(Duration(hours: -10)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(startTime.add(Duration(hours: -8)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【寅时】'] = '${formatDate(startTime.add(Duration(hours: -8)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(startTime.add(Duration(hours: -6)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【卯时】'] = '${formatDate(startTime.add(Duration(hours: -6)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(startTime.add(Duration(hours: -4)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【辰时】'] = '${formatDate(startTime.add(Duration(hours: -4)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(startTime.add(Duration(hours: -2)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【巳时】'] = '${formatDate(startTime.add(Duration(hours: -2)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(startTime, [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【午时】'] = '${formatDate(startTime, [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(endTime, [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【未时】'] = '${formatDate(endTime, [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(endTime.add(Duration(hours: 2)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【申时】'] = '${formatDate(endTime.add(Duration(hours: 2)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(endTime.add(Duration(hours: 4)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【酉时】'] = '${formatDate(endTime.add(Duration(hours: 4)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(endTime.add(Duration(hours: 6)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【戌时】'] = '${formatDate(endTime.add(Duration(hours: 6)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(endTime.add(Duration(hours: 8)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
+    time['【亥时】'] = '${formatDate(endTime.add(Duration(hours: 8)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}-${formatDate(endTime.add(Duration(hours: 10)), [
+          HH,
+          ':',
+          nn,
+          ':',
+          ss,
+          ' ',
+        ])}';
   }
 
   @override
@@ -152,10 +355,27 @@ class _ClockState extends State<Clock> {
                       ),
                     ),
                     Align(
-                      alignment: Alignment(0, 1),
+                      alignment: Alignment(-0.94, 1.2),
                       child: Container(
                         margin: EdgeInsets.all(10),
-                        height: 330,
+                        height: 300,
+                        child: Text(
+                          '时间',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(-0.94, 0.84),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          '【子时】${time['【子时】']}\n【丑时】${time['【丑时】']}\n【寅时】${time['【寅时】']}\n【卯时】${time['【卯时】']}\n【辰时】${time['【辰时】']}\n【巳时】${time['【巳时】']}\n【午时】${time['【午时】']}\n【未时】${time['【未时】']}\n【申时】${time['【申时】']}\n【酉时】${time['【酉时】']}\n【戌时】${time['【戌时】']}\n【亥时】${time['【亥时】']}',
+                          maxLines: 14,
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ],
