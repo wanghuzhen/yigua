@@ -75,7 +75,6 @@ class _ClockState extends State<Clock> {
     super.initState();
     // 动态申请定位权限
     _lc.requestPermission();
-    _lc.startLocation();
     // 注册定位结果监听
     _locationListener = _lc.locationPlugin
         .onLocationChanged()
@@ -86,6 +85,7 @@ class _ClockState extends State<Clock> {
         _getTime(calc.sunTransitTime.toString());
       });
     });
+    _lc.startLocation();
   }
 
   @override
@@ -104,186 +104,91 @@ class _ClockState extends State<Clock> {
         DateTime.parse(sunTranTime).toLocal().add(Duration(hours: -1));
 
     var endTime = DateTime.parse(sunTranTime).toLocal().add(Duration(hours: 1));
-    time['【子时】'] = '${formatDate(startTime.add(Duration(hours: -12)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(startTime.add(Duration(hours: -10)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【丑时】'] = '${formatDate(startTime.add(Duration(hours: -10)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(startTime.add(Duration(hours: -8)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【寅时】'] = '${formatDate(startTime.add(Duration(hours: -8)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(startTime.add(Duration(hours: -6)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【卯时】'] = '${formatDate(startTime.add(Duration(hours: -6)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(startTime.add(Duration(hours: -4)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【辰时】'] = '${formatDate(startTime.add(Duration(hours: -4)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(startTime.add(Duration(hours: -2)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【巳时】'] = '${formatDate(startTime.add(Duration(hours: -2)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(startTime, [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【午时】'] = '${formatDate(startTime, [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(endTime, [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【未时】'] = '${formatDate(endTime, [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(endTime.add(Duration(hours: 2)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【申时】'] = '${formatDate(endTime.add(Duration(hours: 2)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(endTime.add(Duration(hours: 4)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【酉时】'] = '${formatDate(endTime.add(Duration(hours: 4)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(endTime.add(Duration(hours: 6)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【戌时】'] = '${formatDate(endTime.add(Duration(hours: 6)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(endTime.add(Duration(hours: 8)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
-    time['【亥时】'] = '${formatDate(endTime.add(Duration(hours: 8)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}-${formatDate(endTime.add(Duration(hours: 10)), [
-          HH,
-          ':',
-          nn,
-          ':',
-          ss,
-          ' ',
-        ])}';
+    // formatDate(startTime.add(Duration(hours: -12)), [HH, ':', nn, ':', ss, ' ']);
+    time['【子时】'] = [
+      startTime.add(Duration(hours: -12)),
+      startTime.add(Duration(hours: -10))
+    ];
+    time['【丑时】'] = [
+      startTime.add(Duration(hours: -10)),
+      startTime.add(Duration(hours: -8)),
+    ];
+    time['【寅时】'] = [
+      startTime.add(Duration(hours: -8)),
+      startTime.add(Duration(hours: -6)),
+    ];
+    time['【卯时】'] = [
+      startTime.add(Duration(hours: -6)),
+      startTime.add(Duration(hours: -4)),
+    ];
+    time['【辰时】'] = [
+      startTime.add(Duration(hours: -4)),
+      startTime.add(Duration(hours: -2)),
+    ];
+    time['【巳时】'] = [
+      startTime.add(Duration(hours: -2)),
+      startTime,
+    ];
+    time['【午时】'] = [
+      startTime,
+      endTime,
+    ];
+    time['【未时】'] = [
+      endTime,
+      endTime.add(Duration(hours: 2)),
+    ];
+    time['【申时】'] = [
+      endTime.add(Duration(hours: 2)),
+      endTime.add(Duration(hours: 4)),
+    ];
+    time['【酉时】'] = [
+      endTime.add(Duration(hours: 4)),
+      endTime.add(Duration(hours: 6)),
+    ];
+    time['【戌时】'] = [
+      endTime.add(Duration(hours: 6)),
+      endTime.add(Duration(hours: 8)),
+    ];
+    time['【亥时】'] = [
+      endTime.add(Duration(hours: 8)),
+      endTime.add(Duration(hours: 10)),
+    ];
+  }
+
+  _getTimeText() {
+    String timeText = '';
+    time.forEach((key, value) {
+      timeText = timeText +
+          key +
+          formatDate(value[0], [HH, ':', nn, ':', ss, ' ']) +
+          '-' +
+          formatDate(value[1], [HH, ':', nn, ':', ss, ' ']) +
+          (key == '【亥时】' ? '' : '\n');
+    });
+    return timeText;
+  }
+
+  _getAccuracyTime() {
+    String accuracyTime = '当前时辰\n';
+    var time1 = chen[DateTime.now()
+            .difference(DateTime.parse(calc.sunTransitTime.toString())
+                .toLocal()
+                .add(Duration(hours: -13)))
+            .inHours ~/
+        2];
+    var time2 = DateTime.now()
+                    .difference(DateTime.parse(calc.sunTransitTime.toString())
+                        .toLocal()
+                        .add(Duration(hours: -13)))
+                    .inHours %
+                2 ==
+            0
+        ? '初'
+        : '正';
+    var time3 =
+        DateTime.now().difference(time['【' + time1 + '时】'][0]).inMinutes ~/ 15;
+    accuracyTime = accuracyTime + time1 + time2 + ke[time3] + '刻';
+    return accuracyTime;
   }
 
   @override
@@ -394,7 +299,7 @@ class _ClockState extends State<Clock> {
                       child: Container(
                         padding: EdgeInsets.only(left: 10, right: 10),
                         child: Text(
-                          '【子时】${time['【子时】']}\n【丑时】${time['【丑时】']}\n【寅时】${time['【寅时】']}\n【卯时】${time['【卯时】']}\n【辰时】${time['【辰时】']}\n【巳时】${time['【巳时】']}\n【午时】${time['【午时】']}\n【未时】${time['【未时】']}\n【申时】${time['【申时】']}\n【酉时】${time['【酉时】']}\n【戌时】${time['【戌时】']}\n【亥时】${time['【亥时】']}',
+                          _getTimeText(),
                           maxLines: 14,
                           style: TextStyle(color: Colors.black, fontSize: 16),
                         ),
@@ -405,7 +310,7 @@ class _ClockState extends State<Clock> {
                       child: Container(
                         padding: EdgeInsets.only(left: 10, right: 10),
                         child: Text(
-                          '当前时辰\n${chen[DateTime.now().difference(DateTime.parse(calc.sunTransitTime.toString()).toLocal().add(Duration(hours: -13))).inHours ~/ 2]}${DateTime.now().difference(DateTime.parse(calc.sunTransitTime.toString()).toLocal().add(Duration(hours: -13))).inHours % 2 == 0 ? '初' : '正'}${DateTime.now().difference(DateTime.parse(calc.sunTransitTime.toString()).toLocal().add(Duration(hours: -13))).inHours % 2 == 0 ? ke[(DateTime.now().minute ~/ 15)] : ke[(DateTime.now().minute ~/ 15 + 4)]}刻',
+                          _getAccuracyTime(),
                           maxLines: 14,
                           style: TextStyle(color: Colors.black, fontSize: 16),
                         ),
